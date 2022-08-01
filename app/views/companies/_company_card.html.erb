@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="cover">
+    <%if company.cover.attached? %>
+    <%= link_to image_tag(company.cover, alt: "Cover image company", class: "img-card"), company %>
+  <% else %>
+    <%= image_tag("company-default-logo.png", alt: "Cover company default", height: "100px", class: "img-card") %>   
+  <% end %>
+  </div>
+
+  <div class="company_card card">
+    <div>
+      <span class= "title"><%= link_to company.name, company, style: "margin: 0" %></span>
+      <p class= "year">
+      <%= company.start_date.nil? ? "No start date" : company.start_date.year%> -
+      <%= company.country.nil? ? "No country" : company.country%>
+      </p>
+    </div>
+    <p class= "company_description"><%= company.description %></p>
+    <span class= "x-small"><%= company.games.size %> Games</span>
+
+    <div class="icons">
+      <%if policy(Company).update?%>
+      <%= link_to image_tag("edit-icon.png"), edit_company_path(company), class: 'edit__icon'%>
+      <%end%>
+      <%if policy(Company).destroy?%>
+      <%= button_to image_tag("trash-icon.png"), company, method: :delete, class: 'trash__icon' %>
+      <%end%>
+    </div>
+  </div>
+
+</div>

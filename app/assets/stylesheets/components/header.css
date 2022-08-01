@@ -1,0 +1,141 @@
+.header {
+  background-color: var(--gray-100);
+  min-height: 64px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+}
+
+.close-icon {
+  display: none;
+}
+
+.navbar__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+.navbar__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border: 2px solid #d3d3d3;
+  display: none;
+}
+
+.navbar__links .navbar__menu-links {
+  color: var(--primary-500);
+}
+
+.menu-icon--toggle {
+  display: none;
+}
+
+.close-icon--toggle {
+  display: block;
+}
+
+.navbar--menu-show {
+  display: flex;
+}
+
+.navbar--remove-padding {
+  padding-bottom: 0px;
+}
+
+/* .header {
+  position: relative;
+  background-color: white;
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.header__content{
+  padding: .75rem 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.navbar__menu-icon,
+.navbar__menu-icon-close {
+  height: 1.5em;
+  display: none;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--gray-500);
+}
+
+.navbar-links {
+  display: flex;
+  row-gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-links .link {
+  border-radius: 4px;
+  padding: 0.5em 0.75em;
+  transition: background-color 0.5s;
+}
+
+.navbar-links .link:hover {
+  background-color: var(--primary-100);
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0.75rem 1rem;
+  }
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar__menu-icon {
+    display: block;
+  }
+
+  .navbar--open .navbar__menu-icon {
+    display: none;
+  }
+
+  .navbar--open .navbar__menu-icon-close {
+    display: block;
+  }
+
+  .navbar--open .navbar-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+    padding: 1rem;
+    background-color: white;
+  }
+} */

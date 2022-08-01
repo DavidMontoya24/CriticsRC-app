@@ -1,0 +1,15 @@
+<main >
+  <div class="text-center mb-2">
+      <h2 class="company--title__header">Companies</h2>
+      <%if policy(Company).new?%>
+        <%= link_to "NEW COMPANY", new_company_path, class:"button--sm button--primary header_button" %>
+      <%end%>
+  </div>
+
+<div id="companies" class="companies_card">
+  <% @companies.order(:name).each do |company| %>
+    <%= render "companies/company_card", company: company %>
+  <% end %>
+</div>
+
+</main>

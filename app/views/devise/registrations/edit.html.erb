@@ -1,0 +1,42 @@
+<div class="container-lg section" data-turbo = "false">
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form" } ) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <h2 class="text-center heading">Edit Profile</h2>
+  <div class="form__card">
+  <div class="field">
+    <%= f.label :username, class: "overline block form__label" %>
+    <%= f.text_field :username, autocomplete: "email", class: "form__input" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, class: "overline block form__label" %>
+    <%= f.email_field :email, autocomplete: "email", class: "form__input" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password, class: "overline block form__label" %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "form__input", placeholder: "*********" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, class: "overline block form__label" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form__input", placeholder: "*********" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password, class: "overline block form__label"%>
+    <%= f.password_field :current_password, autocomplete: "current-password", class: "form__input", placeholder: "*********" %>
+  </div>
+
+  <div class="form__control">
+    <%= f.submit "Update", class: "button button--primary" %>
+    <%= link_to "Back", :back, class: "form__input form__input--back" %>
+  </div>
+<% end %>
+  </div>
+</div>

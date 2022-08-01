@@ -1,0 +1,116 @@
+.company--title__header{
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.header_button {
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+
+}
+
+.company_card {
+  background: #FFFFFF;
+}
+
+.companies_card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.title {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  color: #303036;
+  margin: 10px;
+}
+
+.year {
+  color: #7A7A7A;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  width: 240px;
+  display: flex;
+  margin: 0px 10px 0px 10px;
+}
+
+.company_description {
+  color: #303036;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 16px;
+  margin: 10px 10px;
+  height: 65px;
+  overflow-y: hidden;
+}
+
+.company_icons {
+  display: flex;
+  align-items: center;  
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
+.img-card {
+  width: inherit;
+  height: inherit;
+}
+
+/* Hover cards */
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 0px;
+}
+
+.container .card{
+  width: 398px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  margin: 4px;
+  transition: all 0.25s;
+}
+
+.container .card:hover{
+  transform: translateY(-15px);
+  box-shadow: 0 12px 16px rgba(0, 0, 0, 0.3);
+}
+
+.container .cover{
+  width: 160px;
+  height: 200px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.container .card p{
+  flex-wrap: wrap;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.container .card a{
+  text-align: left;
+  vertical-align: top;
+  margin: 10px;
+}
+
+.container .cover a{
+  display: block;
+  height: 100%;
+  width: inherit;
+}

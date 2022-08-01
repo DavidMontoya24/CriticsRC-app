@@ -1,0 +1,65 @@
+<section class="container-lg section">
+  <p class="heading--sm text-center mb-4"><strong>Create an account</strong></p>
+  <div class="sigin--option">
+      <div class="sigin--with">
+        <p class="overline signin--option-continue">CONTINUE WITH</p>
+        <div class="signin--option-buttons">
+          <%- if devise_mapping.omniauthable? %>
+            <%- resource_class.omniauth_providers.each do |provider| %>
+              <div data-turbo = "false">
+                <%= form_with(url: omniauth_authorize_path(resource_name, provider), method: :post) do |f| %>
+                  <%= button_tag(type: "submit", class:"custom-button google--button") do%>
+                    <span><%=image_tag("google.svg")%></span>
+                      Google
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+          <button class="custom-button github--button">
+          <span><%=image_tag("github.svg")%></span>
+            Github
+          </button>
+        </div>
+        <p class="overline">OR</p>
+      </div>
+      <div class="form__card">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {data:{turbo: false}, class: "form"}) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <div class="form__field">
+            <%= f.label :username, class: "overline" %>
+            <%= f.text_field :username, autocomplete: "username", class: "form__input", placeholder: "example" %>
+          </div>
+
+          <div class="form__field">
+            <%= f.label :email, class: "overline" %>
+            <%= f.email_field :email, autocomplete: "email", class: "form__input", placeholder: "example@mail.com"%>
+          </div>
+
+          <div class="form__field">
+            <%= f.label :password, class: "overline" %>
+            <% if @minimum_password_length %>
+              <span>(<%= @minimum_password_length %> characters minimum)</span>
+            <% end %>
+            <%= f.password_field :password, autocomplete: "new-password", class: "form__input", placeholder: "*******" %>
+          </div>
+
+          <div class="form__field">
+            <%= f.label :password_confirmation, class: "overline" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form__input", placeholder: "*******" %>
+          </div>
+
+
+            <%= f.submit "Sign up", class:"button button--primary" %>
+
+        <% end %>
+
+        <p class="content-sm text-center">Already a member?</p>
+
+        <%- if controller_name != 'sessions' %>
+          <%= link_to "Sign in", new_session_path(resource_name), class:"anchor-red text-center" %><br />
+        <% end %>
+      </div>
+  </div>
+</section>

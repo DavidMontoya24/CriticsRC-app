@@ -1,0 +1,68 @@
+<section class="p-1 element__container ">
+
+  <div class="element__showcase">
+    <div>
+      <%if @game.cover.attached? %>
+        <%= image_tag(@game.cover, alt: "Cover image game", class: "element__showcase-image") %>
+      <% else %>
+        <%= image_tag("game-default.jpg", alt: "Cover game default", height: "100px", class: "element__showcase-image") %>   
+      <% end %>
+    </div>
+
+    <div class="element__showcase-info">
+      <div>
+        <h2 class="heading--sm regular"><%= @game.name %></h2>
+        <p class="content-xs regular"><%= @game.release_date.year %></p>
+      </div>
+      <div class="button button--secondary p-0-5">
+        <p class="content-xl font-family-inter"><%= @game.rating %></p>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <ul class="element__showcase-links">
+      <li><a href="#element_details"><p class="gray-400">Game Details</p></a></li>
+      <li><a href="#element_critics"><p class="gray-400">Critics (<%= @game_critics.size %>)</p></a></li>
+    </ul>
+  </div>
+
+  <div class="element__show-body">
+    <div class="element_details" id="element_details">
+      <%= render @game %>
+    </div>
+
+
+    <div class="element_critics element__container" id="element_critics">
+      <%= render "critics/form", {critic: Critic.new, criticable: @game }  %>
+      <% @game_critics.sort_by { |c| c.created_at }.reverse.each do |critic| %>
+        <div>
+          <hr>
+          <h3><%=critic.title%></h3>
+          <p class="content-sm gray-300">By <%=critic.user.username%></p>
+          <p><%=critic.body%></p>
+          <div class="critics__options">
+            <p class="content-sm gray-300">Sent <%= time_ago_in_words(critic.created_at)%> ago</p>
+            <div class="flex flex-center flex-gap-10">  <%# Añadir estilos%>
+              <% unless critic.approved%>
+                <% if current_user.admin? %>
+                  <%= link_to  "Approve", game_critic_path(@game, critic), data: { turbo_method: :patch }, class:"anchor-red"%>
+                <% else %>
+                  <span class="content-sm gray-300">Pending approval</span>
+                <% end %>
+              <% end %>
+              <% if critic.user == current_user || current_user.admin? %>
+                <%= button_to image_tag("trash-icon.png"), critic, method: :delete, class: 'trash__icon'%>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="center-text">
+    <%= link_to "Back", games_path, class: "primary-500" %>
+  </div>
+</section>
+

@@ -1,0 +1,41 @@
+<%= form_with(model: [criticable, critic], html: { class: "element__container" } ) do |f|%>
+  <% if critic.errors.any? %>
+
+    <div class = "errors">
+      <ul>
+        <% critic.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%# <%= f.label :title %> 
+    <%= f.text_field :title, required: true, placeholder: "Critic Title", class: "form__input" %>
+  </div>
+
+  <div>
+    <%# <%= f.label :body %> 
+    <%= f.text_area :body, required: true, placeholder: "Critic Body...", class: "form__input" %>
+  </div>
+
+  <div>
+    <%= f.submit "Create Critic", class: "button button--primary width-100"%>
+  </div>
+
+<%end%>
+
+<style>
+.form__input{
+  border-radius: 6px;
+  padding: 8px 12px;
+  border: 1px solid var(--gray-200);
+  width: 100%;
+  resize: none;
+}
+.form__input::placeholder{
+    color: var(--gray-200);
+}
+
+</style>

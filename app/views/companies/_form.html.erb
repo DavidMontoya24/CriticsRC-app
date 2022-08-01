@@ -1,0 +1,42 @@
+<%= form_with(model: company, class: "form") do |form| %>
+  <% if company.errors.any? %>
+    <div class = "errors">
+
+      <ul>
+        <% company.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h1 class="heading form__heading"><%= form_type %> Company</h1>
+  <div>
+    <%= form.label :name, class: "form__label overline block" %>
+    <%= form.text_field :name, class: "form__input", placeholder: "Company SA" %>
+  </div>
+
+  <div>
+    <%= form.label :description, class: "form__label overline block" %>
+    <%= form.text_area :description, class: "form__input form__input--text-area", placeholder: "About the company..." %>
+  </div>
+
+  <div>
+    <%= form.label :start_date, class: "form__label overline block" %>
+    <%= form.date_field :start_date, class: "form__input"  %>
+  </div>
+
+  <div>
+    <%= form.label :country, class: "form__label overline block" %>
+    <%= form.text_field :country, class: "form__input", placeholder: "Somewhere" %>
+  </div>
+
+  <div>
+    <%=form.label :cover, class: "form__label overline block"%>
+    <%= form.file_field :cover%>
+  </div>
+
+  <div class="form__control">
+    <%= form.submit form_type == 'New' ? 'Create company' : 'Update company', class: "button button--primary form__input form__input--submit" %>
+    <%= link_to "Back", companies_path, class: "form__input form__input--back" %>
+  </div>
+<% end %>

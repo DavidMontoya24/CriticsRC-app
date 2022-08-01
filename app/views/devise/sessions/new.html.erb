@@ -1,0 +1,61 @@
+<section class="container-lg section">
+  <p class="heading--sm text-center mb-4"><strong>Sign in to your account</strong></p>
+  <div class="sigin--option">
+    <div class="sigin--with">
+      <p class="overline signin--option-continue">CONTINUE WITH</p>
+      <div class="signin--option-buttons">
+        <%- if devise_mapping.omniauthable? %>
+          <%- resource_class.omniauth_providers.each do |provider| %>
+            <div data-turbo = "false">
+              <%= form_with(url: omniauth_authorize_path(resource_name, provider), method: :post) do |f| %>
+                <%case(OmniAuth::Utils.camelize(provider))%>
+                  <%when "GitHub"  %>
+                    <%= button_tag(type: "submit", class:"custom-button github--button") do%>
+                      <span><%=image_tag("github.svg")%></span>
+                      GitHub
+                    <% end %>
+
+                  <%when "GoogleOauth2" %>
+                    <%= button_tag(type: "submit", class:"custom-button google--button") do%>
+                      <span><%=image_tag("google.svg")%></span>
+                      Google
+                    <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <p class="overline">OR</p>
+    </div>
+      <div data-turbo = "false">
+        <div class="form__card">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form"}) do |f| %>
+            <div class="form__field">
+              <%= f.label :email, class: "overline" %>
+              <%= f.email_field :email, autocomplete: "email", class: "form__input", placeholder: "example@mail.com" %>
+            </div>
+            <div class="form__field">
+              <%= f.label :password, class: "overline" %>
+              <%= f.password_field :password, autocomplete: "current-password", class: "form__input", placeholder: "**********"%>
+            </div>
+            <% if devise_mapping.rememberable? %>
+              <div>
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end %>
+            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+              <%= link_to "Forgot your password?", new_password_path(resource_name), class: "anchor-red" %>
+            <% end %>
+            <%= f.submit "SIGN IN", class:"button button--primary" %>
+          <% end %>
+
+          <p class="content-sm text-center">Don't have an account?</p>
+          <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+            <%= link_to "Create an account", new_registration_path(resource_name), class:"anchor-red text-center" %><br />
+          <% end %>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,65 @@
+<section class="element__container p-1">
+
+  <div class="element__showcase">
+    <div>
+      <%if @company.cover.attached? %>
+        <%= image_tag(@company.cover, alt: "Cover image company", class: "element__showcase-image") %>
+      <% else %>
+        <%= image_tag("company-default-logo.png", alt: "Cover company default", height: "100px") %>
+      <% end %>
+    </div>
+
+    <div>
+      <h2 class="heading--sm regular"> <%=@company.name%></h2>
+      <p class="content-xs regular"><%= @company.start_date.nil? ? "No start date" : @company.start_date.year%> -
+      <%= @company.country.nil? ? "No country" : @company.country%>
+      </p>
+    </div>
+  </div>
+
+  <div>
+    <ul class="element__showcase-links">
+      <li><a href="#element_details"><p class="gray-400">Company Details</p></a></li>
+      <li><a href="#element_critics"><p class="gray-400">Critics (<%= @company_critics.size %>)</p></a></li>
+    </ul>
+  </div>
+
+  <div class="element__show-body">
+    <div class="element_details" id="element_details">
+      <%= render @company %>
+    </div>
+
+    <div class="element_critics element__container" id="element_critics">
+      <%= render "critics/form", {critic: Critic.new, criticable: @company }  %>
+      <% @company_critics.sort_by { |c| c.created_at }.reverse.each do |critic| %>
+      <div>
+        <hr>
+        <h3><%=critic.title%></h3>
+        <p class="content-sm gray-300">By <%=critic.user.username%></p>
+        <p><%=critic.body%></p>
+        <div class="critics__options">
+          <p>Sent <%= time_ago_in_words(critic.created_at)%> ago</p>
+          <div class="flex flex-center flex-gap-10">
+            <% unless critic.approved%>
+              <% if current_user.admin? %>
+                <%= link_to  "Approve", company_critic_path(@company, critic), data: { turbo_method: :patch }, class:"anchor-red"%>
+              <% else %>
+                <span class="content-sm gray-300">Pending approval</span>
+              <% end %>
+            <% end %>
+            <% if critic.user == current_user || current_user.admin? %>
+              <%= button_to image_tag("trash-icon.png"), critic, method: :delete, class: 'trash__icon'%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="center-text">
+    <%= link_to "Back", companies_path, class: "primary-500" %>
+  </div>
+
+</section>
+

@@ -1,0 +1,102 @@
+<div id="<%= dom_id game %>">
+
+  <div class="element__container">
+    <div>
+      <p class="content-xs center-text"><%= game.summary %></p>
+    </div>
+
+    <div>
+      <p class="content-sm">Genres: </p>
+      <div class="element__attribute-list">
+        <% game.genres.each do |genre| %>
+          <div class="element__attribute-button">
+            <span class="content-xs regular"><%= genre.name %></span>
+            <% if policy(Game).update? %>
+              <%= link_to  image_tag("cross-delete-icon.png"), delete_genre_path(genre_id: genre, id: game), data: {turbo_method: :delete}  %> 
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div>
+      <p class="content-sm">Platforms: </p>
+      <div class="element__attribute-list">
+        <% game.platforms.each do |platform| %>
+          <div class="element__attribute-button">
+            <span class="content-xs regular"><%= platform.name %></span>
+            <% if policy(Game).update? %>
+              <%= link_to  image_tag("cross-delete-icon.png"), delete_platform_path(platform_id: platform, id: game), data: {turbo_method: :delete}  %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div>
+      <p class="content-sm">Developers: </p>
+      <div class="element__attribute-list">
+        <% game.involved_companies.where(developer: true).each do |ic| %>
+          <div class="element__attribute-button">
+            <span class="content-xs regular"><%= ic.company.name %></span>
+            <%if policy(Game).update?%>
+              <%= link_to  image_tag("cross-delete-icon.png"), remove_developer_path(ic_id: ic, id: game), data: {turbo_method: :delete} %>
+            <%end%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div>
+      <p class="content-sm">Publishers: </p>
+      <div class="element__attribute-list">
+      <% game.involved_companies.where(publisher: true).each do |ic| %>
+        <div class="element__attribute-button">
+          <span class="content-xs regular"><%= ic.company.name %></span>
+          <%if policy(Game).update?%>
+            <%= link_to  image_tag("cross-delete-icon.png"), remove_publisher_path(ic_id: ic, id: game), data: {turbo_method: :delete} %>
+          <%end%>
+        </div>
+      <% end %>
+      </div>
+    </div>
+
+    <%if policy(Game).update?%>
+      <p class="heading--xs regular">Add Relations:</p>
+
+      <div>
+        <%= form_with(url: add_genre_path(id: @game), class: "select element__select") do |f| %> 
+          <%= f.collection_select :genre_id, Genre.all - @game.genres, :id, :name, options = {prompt: "Select Genre"}, html_options = {class: "element__select-type"}%>
+          <%= f.submit "Add Genre", class: "button button--primary button--sm"%>
+        <% end %>
+      </div>
+
+      <div>
+        <%= form_with(url: add_platform_path(id: @game), class: "select element__select") do |f| %>
+          <%= f.collection_select :platform_id, Platform.all - @game.platforms, :id, :name, options = {prompt: 'Select Platform'}, html_options = {class: "element__select-type"} %>
+          <%= f.submit "Add Platform", class: "button button--primary button--sm" %>
+        <% end %>
+      </div>
+
+      <div>
+        <%= form_with(url: add_developer_path(id: @game), class: "select element__select") do |f| %>
+        <%= f.collection_select :company_id,
+                                Company.order(:name) - @game.involved_companies.where(developer: true).map { |ic| ic.company},
+                                :id, :name, options = {prompt: "Select Company"}, html_options = {class: "element__select-type"}%>
+        <%= f.submit "Add developer", class: "button button--primary button--sm"  %>
+        <% end %>
+      </div>
+
+      <div>
+        <%= form_with(url: add_publisher_path(id: @game), class: "select element__select") do |f| %>
+        <%= f.collection_select :company_id,
+                                Company.order(:name) - @game.involved_companies.where(publisher: true).map { |ic| ic.company},
+                                :id, :name, options = {prompt: "Select Company"}, html_options = {class: "element__select-type"}%>
+        <%= f.submit "Add publisher", class: "button button--primary button--sm"  %>
+        <% end %>
+      </div>
+    <%end%>
+  </div>
+
+</div>
+

@@ -1,0 +1,16 @@
+<div id="<%= dom_id company %>">
+
+  <div class="element__container">
+    <div>
+      <p class="content-xs center-text"><%= company.description %></p>
+    </div>
+
+    <div>
+      <strong>Games: (<%=company.games.size%>)</strong>
+      <% company.games.each do |game|%>
+        <%= render "games/game_card", game: game %>
+      <% end %>
+    </div>
+  </div>
+
+</div>

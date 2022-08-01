@@ -1,0 +1,38 @@
+<div class="element-card">
+  
+    <div class="element-cover-container">
+    <%if game.cover.attached? %>
+    <%= link_to image_tag(game.cover, alt: "element-image", class: "element-image"), game %> 
+    <% else %>
+      <%= image_tag("game-default.jpg", alt: "element-image", height: "100px", class: "element-image") %> 
+    <% end %>
+    </div>
+
+  <div class="">
+    <div class="flex">
+      <div>
+        <div class= "title"><%= link_to game.name, game %></div>
+        <% if game.release_date %>
+          <p class= "year"><%= game.release_date.year %></p>
+        <% end %>
+      </div>
+      <div>
+        <div class="button button--rating "><%= game.rating %></div>
+      </div>
+    </div>
+
+    <p class= "description"><%= game.summary %></p>
+    <span class= "x-small"><%= (policy_scope(Critic) & game.received_critics).size %> Critics</span>
+  
+    <div class="icons">
+      <% if policy(Game).update? %>
+        <%= link_to image_tag("edit-icon.png"), edit_game_path(game), class: 'edit__icon'%>
+      <% end %>
+      <% if policy(Game).destroy? %>
+        <%= button_to image_tag("trash-icon.png"), game, method: :delete, class: 'trash__icon' %>
+      <% end %>
+    </div>
+  </div>
+
+
+</div>

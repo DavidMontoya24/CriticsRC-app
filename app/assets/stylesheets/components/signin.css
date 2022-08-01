@@ -1,0 +1,70 @@
+.sigin--option {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 24px 16px;
+}
+
+.signin--option-continue {
+  color: var(--gray-400);
+}
+.sigin--with {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.signin--option-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+}
+.custom-button {
+  border: none;
+  border-radius: 0.5em;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  line-height: 1.25em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform 150ms;
+  max-height: 3rem;
+}
+.github--button {
+  background-color: rgb(34, 39, 43);
+  color: white;
+  padding: 0.5em 1em;
+  opacity: 50%;
+}
+.github--button:hover {
+  opacity: 100%;
+  transition: opacity 0.8s ease;
+}
+
+.google--button{
+    background-color: rgb(63,127,232);
+    color: white;
+    opacity: 50%;
+    padding-right: 1em;
+}
+.google--button span {
+  background-color: white;
+  border-radius: 0.6rem;
+  height: 35px;
+  margin: 1px;
+  padding: .5em;
+  width: 35px;
+}
+
+.google--button:hover{
+    opacity: 100%;
+    transition: opacity 0.8s ease;
+}

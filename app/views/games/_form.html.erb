@@ -1,0 +1,53 @@
+<%= form_with(model: game, class: "form") do |form| %>
+  <% if game.errors.any? %>
+    <div class = "errors">
+      <ul>
+        <% game.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <h1 class="heading"><%= form_type %> game</h1> 
+  <div>
+    <%= form.label :name, class: "form__label overline block" %>
+    <%= form.text_field :name, class: "form__input", placeholder: "Secret planning" %>
+  </div>
+
+  <div>
+    <%= form.label :summary, class: "form__label overline block" %>
+    <%= form.text_area :summary, class: "form__input form__input--text-area", placeholder: "This is the best department yet..." %>
+  </div>
+
+  <div>
+    <%= form.label :release_date, class: "form__label overline block" %>
+    <%= form.date_field :release_date, class: "form__input" %>
+  </div>
+
+  <div>
+    <%= form.label :rating, class: "form__label overline block" %>
+    <%= form.number_field :rating, step: "0.1", placeholder: "0.0", class: "form__input" %>
+  </div>
+
+  <div>
+    <%= form.label :category, class: "form__label overline block" %>
+    <%= form.select :category, Game.categories.keys.map { |key| [key.humanize.titleize, key] },{}, {class: "form__input form__input--select"}   %>
+  </div>
+
+  <div>
+    <%= form.label :parent_id, class: "form__label overline block" %>
+    <%= form.collection_select :parent_id, Game.where("parent_id is null"), :id, :name,{include_blank: "No parent"}, {class: "form__input form__input--select"} %>
+  </div>
+  <%# VALIDAR ESCOGER CORRECTAMENTE CATEGORY Y PARENT %>
+  
+  <div>
+    <%= form.label :cover, class: "form__label overline block" %>
+    <%= form.file_field :cover %>
+  </div>
+
+  <div class="form__control">
+    <%= form.submit form_type == 'New' ? 'Create game' : 'Update game', class: "button button--primary form__input form__input--submit" %>
+    <%= link_to "Back", games_path, class: "form__input form__input--back" %>
+  </div>
+<% end %>

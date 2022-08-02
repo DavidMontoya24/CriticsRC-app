@@ -5,7 +5,7 @@
       <%if @game.cover.attached? %>
         <%= image_tag(@game.cover, alt: "Cover image game", class: "element__showcase-image") %>
       <% else %>
-        <%= image_tag("game-default.jpg", alt: "Cover game default", height: "100px", class: "element__showcase-image") %>   
+        <%= image_tag("game-default.jpg", alt: "Cover game default", class: "element__showcase-image") %>   
       <% end %>
     </div>
 

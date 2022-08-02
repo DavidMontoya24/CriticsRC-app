@@ -78,7 +78,7 @@
   flex-wrap: wrap;
 }
 
-.gap-4 {
+.gap-1 {
   gap: 1rem;
 }
 
@@ -98,6 +98,10 @@
 
 .text-center {
   text-align: center;
+}
+
+.font-primary {
+  font-family: var(--font-primary);
 }
 
 .font-secondary {

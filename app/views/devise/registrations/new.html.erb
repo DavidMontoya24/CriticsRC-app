@@ -7,19 +7,24 @@
           <%- if devise_mapping.omniauthable? %>
             <%- resource_class.omniauth_providers.each do |provider| %>
               <div data-turbo = "false">
-                <%= form_with(url: omniauth_authorize_path(resource_name, provider), method: :post) do |f| %>
-                  <%= button_tag(type: "submit", class:"custom-button google--button") do%>
-                    <span><%=image_tag("google.svg")%></span>
+              <%= form_with(url: omniauth_authorize_path(resource_name, provider), method: :post) do |f| %>
+                <%case(OmniAuth::Utils.camelize(provider))%>
+                  <%when "GitHub"  %>
+                    <%= button_tag(type: "submit", class:"custom-button github--button") do%>
+                      <span><%=image_tag("github.svg")%></span>
+                      GitHub
+                    <% end %>
+
+                  <%when "GoogleOauth2" %>
+                    <%= button_tag(type: "submit", class:"custom-button google--button") do%>
+                      <span><%=image_tag("google.svg")%></span>
                       Google
-                  <% end %>
+                    <% end %>
                 <% end %>
-              </div>
+              <% end %>
+            </div>
             <% end %>
           <% end %>
-          <button class="custom-button github--button">
-          <span><%=image_tag("github.svg")%></span>
-            Github
-          </button>
         </div>
         <p class="overline">OR</p>
       </div>

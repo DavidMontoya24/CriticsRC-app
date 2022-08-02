@@ -45,7 +45,7 @@
         </nav>
       </div>
     </header>
-    <div style="margin-top: 68px" class="container-lg section">
+    <div class="container-lg section">
       <% if notice %>
         <p class="notice"><%= notice %></p>
       <% elsif alert %>
@@ -56,16 +56,12 @@
       <%# FOOTER %>
       <footer class="footer">
         <div class="footer footer__content">
-          <h3 class = "content-sm" >© 2022 - Codeable Critics</h3>
           <h3 class = "content-sm" >Build with ♥ by</h3>
           <div class="footer--names">
-            <div class="footer__member-tag"><%= image_tag("LinkedIn-icon.png", size: "12") %>David Montoya</div>
-            <div class="footer__member-tag"><%= image_tag("LinkedIn-icon.png", size: "12") %>Diego Paccotaype</div>
-            <div class="footer__member-tag"><%= image_tag("LinkedIn-icon.png", size: "12") %>Jose Becerril</div>
-            <div class="footer__member-tag"><%= image_tag("LinkedIn-icon.png", size: "12") %>Jose Luis Tordoya</div>
-            <div class="footer__member-tag"><%= image_tag("LinkedIn-icon.png", size: "12") %>Rodrigo Lopez</div>
-            <div class="footer__member-tag"><%= image_tag("LinkedIn-icon.png", size: "12") %>Sebastian Garcia</div>
+            <div class="footer__member-tag"><%= image_tag("LinkedIn-icon.png", size: "12") %><h3 class = "content-sm">David Montoya</h3></div>
           </div>
+          <h3 class = "content-sm" >© 2022 - Critics RC</h3>
+          <p class = "content-sm">with <strong>Codeable Org</strong></p>
         </div>
     </div>
 

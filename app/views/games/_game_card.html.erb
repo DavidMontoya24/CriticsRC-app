@@ -1,19 +1,18 @@
-<div class="element-card">
-  
+<div class="element-card gap-1">
     <div class="element-cover-container">
     <%if game.cover.attached? %>
     <%= link_to image_tag(game.cover, alt: "element-image", class: "element-image"), game %> 
     <% else %>
-      <%= image_tag("game-default.jpg", alt: "element-image", height: "100px", class: "element-image") %> 
+      <%= image_tag("game-default.jpg", alt: "element-image", class: "element-image") %> 
     <% end %>
     </div>
 
-  <div class="">
-    <div class="flex">
+  <div class="font-primary">
+    <div class="flex  ">
       <div>
-        <div class= "title"><%= link_to game.name, game %></div>
+        <div class= "content-lg regular"><%= link_to game.name, game %></div>
         <% if game.release_date %>
-          <p class= "year"><%= game.release_date.year %></p>
+          <p class= "content-xs"><%= game.release_date.year %></p>
         <% end %>
       </div>
       <div>
@@ -21,16 +20,19 @@
       </div>
     </div>
 
-    <p class= "description"><%= game.summary %></p>
-    <span class= "x-small"><%= (policy_scope(Critic) & game.received_critics).size %> Critics</span>
-  
-    <div class="icons">
-      <% if policy(Game).update? %>
-        <%= link_to image_tag("edit-icon.png"), edit_game_path(game), class: 'edit__icon'%>
-      <% end %>
-      <% if policy(Game).destroy? %>
-        <%= button_to image_tag("trash-icon.png"), game, method: :delete, class: 'trash__icon' %>
-      <% end %>
+    <p class= "element-description content-sm"><%= game.summary %></p>
+
+    <div class="flex ">
+      <div class= "x-small"><%= (policy_scope(Critic) & game.received_critics).size %> Critics</div>
+    
+      <div class="element-icons">
+        <% if policy(Game).update? %>
+          <%= link_to "Edit", edit_game_path(game), class: 'button--sm button--primary'%>
+        <% end %>
+        <% if policy(Game).destroy? %>
+          <%= link_to "Delete", game, data: { turbo_method: :delete }, class: 'button--sm button--primary' %>
+        <% end %>
+      </div>
     </div>
   </div>
 

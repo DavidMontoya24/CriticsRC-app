@@ -85,7 +85,7 @@ class GamesController < ApplicationController
   def destroy
     authorize @game
     @game.destroy
-    redirect_to games_url, notice: "Game was successfully destroyed."
+    redirect_to games_url, notice: "Game was successfully destroyed.", status: :see_other
   end
 
   private

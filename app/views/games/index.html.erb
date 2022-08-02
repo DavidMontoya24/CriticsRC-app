@@ -1,15 +1,19 @@
-<section >
-  <div class="text-center mb-2">
-      <h2 class="game--title__header">Games</h2>
-        <% if policy(Game).new? %>
-          <%= link_to "NEW GAME", new_game_path, class:"button--sm button--primary header_button" %>
-        <% end %>
-  </div>
+<section class="flex flex-column gap-1">
+  <div class="text-center">
 
-    <div id="games" class="elements__cards_container">
-      <% @games.order(:name).each do |game| %>
-        <%= render "games/game_card", game: game %>
-      <% end %>
-    </div>
+      <h2>Games</h2>
+  </div>
+  
+  <% if policy(Game).new? %>
+  <div class="text-center">
+    <%= link_to "NEW GAME", new_game_path, class:"button--sm button--primary" %>
+  </div>
+  <% end %>
+
+  <div id="games" class="elements__cards_container">
+    <% @games.order(:name).each do |game| %>
+      <%= render "games/game_card", game: game %>
+    <% end %>
+  </div>
 
 </section>

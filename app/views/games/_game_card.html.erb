@@ -7,30 +7,31 @@
     <% end %>
     </div>
 
-  <div class="font-primary">
-    <div class="flex  ">
+  <div class="flex flex-column space-between font-primary">
+    <div class="flex space-between">
       <div>
         <div class= "content-lg regular"><%= link_to game.name, game %></div>
-        <% if game.release_date %>
-          <p class= "content-xs"><%= game.release_date.year %></p>
-        <% end %>
+        <div class="flex gap-0-25">
+          <% if game.release_date %>
+            <p class= "content-xs"><%= game.release_date.year %></p>
+          <% end %>
+          <div class= "x-small">· <%= (policy_scope(Critic) & game.received_critics).size %> Critics</div>
+        </div>
       </div>
       <div>
         <div class="button button--rating "><%= game.rating %></div>
       </div>
     </div>
 
-    <p class= "element-description content-sm"><%= game.summary %></p>
+    <p class= "element-description"><%= game.summary %></p>
 
-    <div class="flex ">
-      <div class= "x-small"><%= (policy_scope(Critic) & game.received_critics).size %> Critics</div>
-    
+    <div class="flex">
       <div class="element-icons">
         <% if policy(Game).update? %>
-          <%= link_to "Edit", edit_game_path(game), class: 'button--sm button--primary'%>
+          <%= link_to "Edit", edit_game_path(game), class: 'button button--sm button--primary display-initial'%>
         <% end %>
         <% if policy(Game).destroy? %>
-          <%= link_to "Delete", game, data: { turbo_method: :delete }, class: 'button--sm button--primary' %>
+          <%= link_to "Delete", game, data: { turbo_method: :delete }, class: 'button button--sm button--primary display-initial' %>
         <% end %>
       </div>
     </div>

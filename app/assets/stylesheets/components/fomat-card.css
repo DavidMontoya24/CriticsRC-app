@@ -23,7 +23,9 @@
   object-fit: cover;
 }
 .element-description {
-  height: 100px;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  height: 95px;
   overflow-y: hidden;
 }
 .element-icons {

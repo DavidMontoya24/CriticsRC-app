@@ -57,13 +57,9 @@
   color: white;
   width: 42px;
   height: 32px;
-  float: right;
-  font-family: var(--font-primary);
   font-size: 16px;
-  font-weight: 300;
   line-height: 24px;
   letter-spacing: 0px;
-  text-align: left;
 }
 
 .button--rating:hover {

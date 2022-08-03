@@ -55,11 +55,11 @@
 .button--rating {
   background-color: var(--secondary-300);
   color: white;
-  width: 42px;
+  width: 60px;
   height: 32px;
   font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0px;
+  line-height: 15px;
+  letter-spacing: 0;
 }
 
 .button--rating:hover {

@@ -28,6 +28,11 @@
   height: 95px;
   overflow-y: hidden;
 }
+.ele{
+  width: 1rem;
+  height: 1rem;
+}
+
 .element-icons {
 
 }
